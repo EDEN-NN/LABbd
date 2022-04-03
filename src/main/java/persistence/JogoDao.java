@@ -23,7 +23,7 @@ public class JogoDao {
 	public List<Jogo> gerarJogos() throws SQLException, ClassNotFoundException{
 		List<Jogo> jogos = new ArrayList<>();
 		Connection c = gDao.getConnection();
-		PreparedStatement ps = c.prepareStatement("SELECT * FROM Jogos ");
+		PreparedStatement ps = c.prepareStatement("SELECT * FROM Jogos WHERE DiaDoJogo IS NOT NULL");
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
 			Jogo jogo = new Jogo();
