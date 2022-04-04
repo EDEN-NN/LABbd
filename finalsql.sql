@@ -229,3 +229,11 @@ BEGIN
 	RETURN  
 END
 GO
+CREATE PROC get_rodada(@data DATE)
+AS
+    SELECT * FROM Jogos WHERE DiaDoJogo IN (@data, (
+        CASE
+            WHEN DATEPART(WEEKDAY, @data) = 4 THEN DATEADD(DAY, -3, @data)
+            ELSE DATEADD(DAY, 3, @data)
+        END
+    ))
